@@ -3,9 +3,7 @@ const app = express();
 const port = process.env.PORT || 3001;
 
 const pgp = require("pg-promise")(/* options */);
-const db = pgp(
-  "postgres://sights_and_sounds_user:F6MXRPskRjthgJY6rWNvxRxeXkbANwjt@dpg-ce5632g2i3mjq979hhi0-a/sights_and_sounds"
-);
+const db = pgp(process.env.CONNECTION_STRING);
 
 app.use(function (req, res, next) {
   res.setHeader(
