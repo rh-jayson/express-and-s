@@ -33,4 +33,4 @@ app.get("/films", async (req, res) => {
   }
 });
 
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+app.listen(port, () => console.log(`S&S app listening on port ${port}!`));
