@@ -10,7 +10,7 @@ const db = pgp(
 app.use(function (req, res, next) {
   res.setHeader(
     "Access-Control-Allow-Origin",
-    "https://sounds-and-sights.onrender.com/"
+    "https://sounds-and-sights.onrender.com"
   );
   res.setHeader("Access-Control-Allow-Methods", "GET");
   res.setHeader(
