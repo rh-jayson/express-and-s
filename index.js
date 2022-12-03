@@ -7,6 +7,19 @@ const db = pgp(
   "postgres://sights_and_sounds_user:F6MXRPskRjthgJY6rWNvxRxeXkbANwjt@dpg-ce5632g2i3mjq979hhi0-a/sights_and_sounds"
 );
 
+app.use(function (req, res, next) {
+  res.setHeader(
+    "Access-Control-Allow-Origin",
+    "https://sounds-and-sights.onrender.com/"
+  );
+  res.setHeader("Access-Control-Allow-Methods", "GET");
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Content-Type, Access-Control-Allow-Headers"
+  );
+  next();
+});
+
 app.get("/", (req, res) => {
   try {
     console.log("you successfully hit the / route");
