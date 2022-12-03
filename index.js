@@ -2,6 +2,11 @@ const express = require("express");
 const app = express();
 const port = process.env.PORT || 3001;
 
+const pgp = require("pg-promise")(/* options */);
+const db = pgp(
+  "postgres://sights_and_sounds_user:F6MXRPskRjthgJY6rWNvxRxeXkbANwjt@dpg-ce5632g2i3mjq979hhi0-a/sights_and_sounds"
+);
+
 app.get("/", (req, res) => {
   try {
     console.log("you successfully hit the / route");
@@ -10,19 +15,21 @@ app.get("/", (req, res) => {
   }
 });
 
-app.get("/directors", (req, res) => {
+app.get("/directors", async (req, res) => {
   try {
-    console.log("You successfully hit the directors endpoint");
+    const directors = await db.any("SELECT * FROM public.director");
+    res.status(200).send(directors);
   } catch (error) {
-    console.error(error.message);
+    res.status(500).send(error);
   }
 });
 
-app.get("/films", (req, res) => {
+app.get("/films", async (req, res) => {
   try {
-    console.log("You successfully hit the films endpoint");
+    const films = await db.any("SELECT * FROM film");
+    res.status(200).send(films);
   } catch (error) {
-    console.error(error.message);
+    res.status(500).send(error);
   }
 });
 
